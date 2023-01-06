@@ -1,36 +1,71 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# NextJS
 
-## Getting Started
+The React Framework for Production
 
-First, run the development server:
+React is a javascript library
 
-```bash
-npm run dev
-# or
-yarn dev
+Framework vs Library : Framework is bigger and gives clear rules on how to write code and structure files
+
+NextJS solves common problem and makes building React apps easier
+
+Key feature 1 : Server-side rendering : Page pre-rendered : good for SEO and initial loading
+Key feature 2 : File-based Routing : Define pages and routes with files and folder instead of code
+Key feature 3 : Fullstack capabilities : Easily add backend code to your Next / React apps
+
+![image](https://user-images.githubusercontent.com/104289891/211045518-f5ab5fb4-1b5d-44ff-a420-e388296e69c0.png)
+
+
+## Create New Next.js Project and App
+
+```javascript
+npx create-next-app@latest
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## run server
 
-You can start editing the page by modifying `pages/index.js`. The page auto-updates as you edit the file.
+```javascript
+npm run dev
+```
 
-[API routes](https://nextjs.org/docs/api-routes/introduction) can be accessed on [http://localhost:3000/api/hello](http://localhost:3000/api/hello). This endpoint can be edited in `pages/api/hello.js`.
+## Extract Dynamic pages with parameters
 
-The `pages/api` directory is mapped to `/api/*`. Files in this directory are treated as [API routes](https://nextjs.org/docs/api-routes/introduction) instead of React pages.
+```javascript
+import { useRouter } from 'next/router'
+ 
+const DetailPage = () => {
+    const router = useRouter();
+ 
+    const newsId = router.query.newsId;
+ 
+    return <h1>The Detail Page</h1>
+}
+ 
+export default DetailPage;
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```
 
-## Learn More
+## Linking Between Pages
 
-To learn more about Next.js, take a look at the following resources:
+```javascript
+import Link from 'next/link'
+import {Fragment} from 'react'
+ 
+const NewsPage = () => {
+    return (
+    <Fragment>
+    <h1>The News Page</h1>
+    <ul>
+    <li>
+        <Link href='/news/nextjs-is-great'>
+            Nextjs is great
+        </Link>
+    </li>
+    <li>Something Else</li>
+    </ul>
+    </Fragment>
+    )
+}
+ 
+export default NewsPage;
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```
